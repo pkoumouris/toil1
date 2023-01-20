@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Toil2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <br /><br />
+  <div id="top-bar">
+    <table id="top-bar-table">
+      <tr>
+        <td>
+          <% if logged_in? %>
+            <%= react_component('AccountCircle', {name: current_user.name, email: current_user.email, role: current_user.role, created_at: current_user.created_at.rfc2822, auth_token: form_authenticity_token}) %>
+          <% else %>
+            <div class="top-bar-item" onclick="location.href='/login';">
+              Login
+            </div>
+          <% end %>
+        </td>
+        <td>
+          <div class="top-bar-item" onclick="location.href='/';">
+            Home
+          </div>
+        </td>
+        <td>
+          <div id="top-bar-logo">
+            Time off in lieu app
+          </div>
+        </td>
+      </tr>
+    </table>
+    
+    
+  </div>
+  <% if flash.any? %>
+      <% flash.each do |name, msg| %>
+        <div id="flash-<%= name %>">
+          <%= msg %>
+        </div>
+      <% end %>
+    <% end %>
+  <div id="yield">
+    <%= yield %>
+  </div>
+  </body>
+</html>

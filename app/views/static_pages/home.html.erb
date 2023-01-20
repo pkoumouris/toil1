@@ -1,0 +1,20 @@
+
+<% if logged_in? %>
+<%= react_component('Home') %>
+<% else %>
+<div id="home-not-logged-in">
+    <img src="/Australian_Christian_Lobby_logo.png" />
+    <h1>
+        Welcome to the TOIL app
+    </h1>
+    <p>
+        Go to the <a href="/login">login</a> page to view your information.
+    </p>
+    <p>
+        This is the Time Off In Lieu management system for the Australian Christian Lobby.
+    </p>
+    <p>
+        For account-related issues, please email parris.koumouris@acl.org.au.
+    </p>
+</div>
+<% end %>

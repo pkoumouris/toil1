@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+    <h1>
+        Hello!
+    </h1>
+    <div id="securepay-ui-container">
+
+    </div>
+    <button onclick="mySecurePayUI.tokenise();">
+        Submit
+    </button>
+    <button onclick="mySecurePayUI.reset();">
+        Reset
+    </button>
+</html>
+
+<!-- Include the SecurePay UI Component. -->
+<script id="securepay-ui-js" src="https://payments-stest.npe.auspost.zone/v3/ui/client/securepay-ui.min.js"></script>
+
+<!-- Configure the UI component. -->
+<script type="text/javascript">
+
+      var mySecurePayUI = null;
+
+      function initSPObject(){
+        try {
+          mySecurePayUI = new securePayUI.init({
+            containerId: 'securepay-ui-container',
+            scriptId: 'securepay-ui-js',
+            clientId: '0oaxb9i8P9vQdXTsn3l5',
+            merchantCode: '5AR0055',
+            card: { // card specific config options / callbacks
+                onTokeniseSuccess: function(tokenisedCard) {
+                  // card was successfully tokenised
+                  // here you could make a payment using the SecurePay API (via your application server)
+                  console.log(tokenisedCard);
+                },
+                onTokeniseError: function(errors) {
+                  // error while tokenising card 
+                }
+            }
+          });
+          console.log("Object initialised!");
+        } catch(err){
+          console.log("Could not work, trying again...");
+          setTimeout(initSPObject, 1000);
+        }
+      }
+
+      initSPObject();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<script>
+let apiKey = '9f7edc3549694a37b203d7e95e63c676';
+$.getJSON('https://ipgeolocation.abstractapi.com/v1/?api_key=' + apiKey, function(data) {
+  console.log(JSON.stringify(data, null, 2));
+});
+</script>

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: 1
+  lieuaccrual: one
+  start_at: 2022-10-04 09:34:35
+  start_minutes: 1
+  duration: 1
+
+two:
+  status: 1
+  lieuaccrual: two
+  start_at: 2022-10-04 09:34:35
+  start_minutes: 1
+  duration: 1

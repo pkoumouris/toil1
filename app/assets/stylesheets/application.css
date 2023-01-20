@@ -1,0 +1,139 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+    font-family: Arial;
+    z-index: 0;
+}
+
+ #top-bar {
+    height: 50px;
+    margin: -10px;
+    padding: 10px;
+    margin-top: -50px;
+    background-color: #3495eb;
+    z-index: 0;
+ }
+
+ #top-bar-table {
+   margin-left: 100px;
+ }
+
+ #top-bar-logo {
+    font-size: 26px;
+    color: #fff;
+    margin-top: 10px;
+    margin-left: 30px;
+    font-weight: bold;
+ }
+
+ #flash-success {
+    padding: 20px;
+    font-size: 16px;
+    background-color: lightgreen;
+    margin-top: 20px;
+ }
+
+ #flash-info {
+   padding: 20px;
+   font-size: 16px;
+   background-color: lightblue;
+   margin-top: 20px;
+ }
+
+ #flash-warning {
+   padding: 20px;
+   font-size: 16px;
+   background-color: orange;
+   margin-top: 20px;
+ }
+
+ #flash-danger {
+   padding: 20px;
+   font-size: 16px;
+   background-color: lightcoral;
+   margin-top: 20px;
+ }
+
+
+ #account-circle {
+    background-color: #fff;
+    width: 36px;
+    height: 28px;
+    padding-top: 8px;
+    border-radius: 18px;
+    text-align: center;
+    cursor: pointer;
+ }
+
+ #account-circle-expanded {
+   background-color: #fff;
+   width: 300px;
+   z-index: 99;
+   position: fixed;
+   top: 60px;
+   left: 100px;
+   padding: 20px;
+   font-size: 14px;
+   border-radius: 6px;
+   box-shadow: 3px 2px 2px 3px #888888;
+ }
+
+ #account-circle-expanded table tr td:nth-child(1) {
+   text-align: right;
+   width: 40px;
+   color: grey;
+   padding-right: 20px;
+ }
+
+ #account-circle-expanded table tr td:nth-child(2) {
+   text-align: left;
+ }
+
+ .top-bar-item {
+   width: 100px;
+   height: 30px;
+   padding-top: 15px;
+   text-align: center;
+   font-weight: bold;
+   cursor: pointer;
+   color: #fff;
+ }
+
+ .top-bar-item:hover {
+   background-color: #fff;
+   color: #3495eb;
+ }
+
+
+
+.general-button {
+   padding: 8px;
+   background-color: darkcyan;
+   color: #fff;
+   font-size: 16px;
+   font-weight: bold;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   min-width: 100px;
+   margin: 3px;
+}
+
+
+#yield {
+   z-index: 0;
+}

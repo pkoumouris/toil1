@@ -1,0 +1,17 @@
+
+<% @users.each do |user| %>
+<div class="user-list-container">
+    <h4>
+        <a href="/user/<%= user.id %>"><%= user.name %></a>
+    </h4>
+    <p>
+        Joined on <%= user.created_at.rfc2822 %>
+    </p>
+</div>
+<% end %>
+
+<% if @users.empty? %>
+<div>
+    Sorry there are no employees under you.
+</div>
+<% end %>

@@ -1,0 +1,20 @@
+// Place all the styles related to the static_pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.home-section {
+    padding: 20px;
+    width: 320px;
+    margin: 10px;
+    border: solid;
+    border-color: grey;
+    border-width: 1px;
+    border-radius: 6px;
+}
+
+#home-not-logged-in {
+    text-align: center;
+    padding-top: 80px;
+    width: 600px;
+    margin: auto;
+}
