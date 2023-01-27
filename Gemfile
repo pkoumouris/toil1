@@ -35,15 +35,19 @@ gem 'httparty'
 # Use OAuth
 gem 'oauth2'
 
+gem 'net-ssh', '>= 6.0.2'
+#gem 'ed25519', '>= 1.2', '< 2.0'
+#gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.4'
-  gem 'capistrano', '~> 3.17'
-  gem 'capistrano-rails', '~> 1.6', '>= 1.6.2'
-  gem 'capistrano-passenger', '~> 0.2.1'
-  gem 'capistrano-rbenv', '~> 2.2'
+  gem 'capistrano', '~> 3.11'
+  gem 'capistrano-rails', '~> 1.4'
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
   gem 'ed25519', '~> 1.3'
   gem 'bcrypt_pbkdf', '~> 1.1'
 end
