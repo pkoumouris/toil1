@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2022_10_17_231330) do
     t.integer "subordinate_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"manager_id\", \"superior_id\"", name: "index_superiors_on_manager_id_and_superior_id"
+    t.index ["manager_id", "subordinate_id"], name: "index_superiors_on_manager_id_and_subordinate_id"
     t.index ["manager_id"], name: "index_superiors_on_manager_id"
     t.index ["subordinate_id"], name: "index_superiors_on_subordinate_id"
   end
