@@ -95,9 +95,15 @@ class UsersController < ApplicationController
 
     def mass_import_api
         if logged_in? && current_user.status > 2 && Digest::SHA256.hexdigest(params[:password]) == "e2a56b45c178acb37f0c37e758c59c6fa2cabcc6015fdb8737e07ac7e6f9967b"
+            created_users = []
             params[:employees].each do |employee|
-                user = User.new(name: employee[:name], email: employee[:email], role: employee[:role], password: employee[:password])
-                user.save
+                user = User.new(name: employee[:name], email: employee[:email], role: employee[:role], password: employee[:password], status: 1)
+                if !!user.save
+                    created_users.push(user)
+                end
+            end
+            params[:employees].each do |employee|
+                user = User.find_by(email: employee[:email])
                 if employee[:superior_email] != 'null' && !employee[:superior_email].nil?
                     superior_user = User.find_by(email: employee[:superior_email])
                     user.assign_as_subordinate_to(superior_user)
