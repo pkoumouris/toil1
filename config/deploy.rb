@@ -42,16 +42,11 @@ set :keep_releases, 5
 
 # To interact with the console
 namespace :rails do
-    desc 'Open a rails console `cap [staging] rails:console [server_index default: 0]`'
-    task :console do    
-        server = roles(:app)[ARGV[2].to_i]
-
-        puts "Opening a console on: #{server.hostname}...."
-
-        cmd = "ssh #{server.user}@#{server.hostname} -t 'cd #{fetch(:deploy_to)}/current && RAILS_ENV=#{fetch(:rails_env)} bundle exec rails console'"
-
-        puts cmd
-
-        exec cmd
+    desc "Open the rails console on one of the remote servers"
+    task :console do |current_task|
+        on roles(:app) do |server|
+            server ||= find_servers_for_task(current_task).first
+            exec %Q[ssh -l #{server.user||fetch(:user)} #{server.hostname} -p #{server.port || 22} -t 'export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)"; cd #{release_path}; bin/rails console -e production']
+        end
     end
 end
