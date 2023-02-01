@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get '/api/monthexpends', to: 'lieuexpends#expends_month_api'
   get '/api/expends/dayquery', to: 'lieuexpends#available_toil_on_day'
   post '/api/expends/create', to: 'lieuexpends#create_api'
+  post '/api/expends/destroy', to: 'lieuexpends#destroy_api'
   get '/expends/approve', to: 'lieuexpends#expend_approvals'
   get '/api/lieuexpends', to: 'lieuexpends#expend_list_api'
   post '/api/lieuexpend/approve', to: 'lieuexpends#update_status_api'

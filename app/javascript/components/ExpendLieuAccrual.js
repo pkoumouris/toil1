@@ -50,6 +50,7 @@ class ExpendLieuAccrual extends React.Component {
     this.send_expends = this.send_expends.bind(this);
     this.is_weekend = this.is_weekend.bind(this);
     this.perform_checks = this.perform_checks.bind(this);
+    this.delete_expend = this.delete_expend.bind(this);
 
   }
 
@@ -356,7 +357,7 @@ class ExpendLieuAccrual extends React.Component {
     if (start_time >= this.state.end_time){
       errors.push("Start time must be before end time.");
     } else if (this.state.end_time - start_time > this.state.selected_day.leave_available){
-      errors.push("You only have "+String(this.state.selected_day.leave_available/60)+" hours of leave available. You are requesting "+String((end_time - start_time) / 60)+" hours.")
+      errors.push("You only have "+String(this.state.selected_day.leave_available/60)+" hours of leave available. You are requesting "+String((this.state.end_time - start_time) / 60)+" hours.")
     }
     this.setState({
       start_time: start_time,
@@ -379,8 +380,16 @@ class ExpendLieuAccrual extends React.Component {
   }*/
 
   change_end_time(e){
+    const end_time = Number(e.target.value);
+    let errors = [];
+    if (this.state.start_time >= end_time){
+      errors.push("Start time must be before end time");
+    } else if (end_time - this.state.start_time > this.state.selected_day.leave_available){
+      errors.push("You only have "+String(this.state.selected_day.leave_available/60)+" hours of leave available. You are requesting "+String((end_time - this.state.start_time) / 60)+ " hours.");
+    }
     this.setState({
-      end_time: e.target.value
+      end_time: end_time,
+      errors: errors
     });
   }
 
@@ -448,6 +457,46 @@ class ExpendLieuAccrual extends React.Component {
       this.get_available_leave_day(this.state.year, this.state.month_index + 1, this.state.selected_day.day_number);
     });
   }
+  }
+
+  delete_expend(id){
+    console.log("id = "+String(id));
+    fetch("/api/expends/destroy", {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'x-csrf-token': this.props.auth_token
+      },
+      body: JSON.stringify({id: id})
+    }).then( (response) => {
+      if (response.ok){
+        return response.json();
+      }
+      throw new Error('Request fail');
+    }).then(json => {
+      if (json.success){
+        let i;
+        let engagements = [];
+        for (i = 0 ; i < this.state.selected_day.engagements.length ; i++){
+          if (this.state.selected_day.engagements[i].id !== id){
+            available_leave.push(this.state.selected_day.engagements[i]);
+          }
+        }
+        let selected_day = this.state.selected_day;
+        selected_day.engagements = engagements;
+        console.log("available_leave");
+        console.log(engagements);
+        this.setState({
+          selected_day: selected_day
+        });
+      } else {
+        this.setState({
+          errors: ['Could not delete. Contact administrator.']
+        });
+      }
+    });
   }
 
   is_weekend(){
@@ -560,6 +609,9 @@ class ExpendLieuAccrual extends React.Component {
                     </tr>
                   </tbody>
                 </table>
+                <button onClick={() => this.delete_expend(engagement.id)}>
+                  Delete
+                </button>
               </div>
             )}
 
@@ -580,7 +632,7 @@ class ExpendLieuAccrual extends React.Component {
                     </td>
                     <td>
                       <select id="new-toil-start" onChange={this.change_start_time}>
-                        {(Array.from(Array(15).keys())).map((v,i) => 
+                        {(Array.from(Array(16).keys())).map((v,i) => 
                           <option value={i*30+540} key={i}>
                             {mins2timestr(i*30+540)}
                           </option>
@@ -594,9 +646,9 @@ class ExpendLieuAccrual extends React.Component {
                     </td>
                     <td>
                       <select id="new-toil-end" onChange={this.change_end_time}>
-                        {(Array.from(Array(15).keys())).map((v,i) => 
-                          <option value={i*15+570} key={i}>
-                            {mins2timestr(i*15+570)}
+                        {(Array.from(Array(16).keys())).map((v,i) => 
+                          <option value={i*30+570} key={i}>
+                            {mins2timestr(i*30+570)}
                           </option>
                         )}
                       </select>

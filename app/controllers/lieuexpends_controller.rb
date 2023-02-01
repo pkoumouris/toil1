@@ -36,6 +36,20 @@ class LieuexpendsController < ApplicationController
     end
   end
 
+  def destroy_api
+    lieuexpend = Lieuexpend.find_by(id: params[:id].to_i)
+    lieuexpend.lieuaccrual.update_attribute(:unexpended, lieuexpend.lieuaccrual.unexpended + lieuexpend.duration)
+    if !!lieuexpend.destroy
+      render json: {
+        success: true
+      }.to_json
+    else
+      render json: {
+        success: false
+      }.to_json
+    end
+  end
+
   def create_api
     lieuaccrual = Lieuaccrual.find_by(id: params[:accrualID].to_i)
     puts "LA"

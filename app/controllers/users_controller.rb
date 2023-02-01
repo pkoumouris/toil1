@@ -97,7 +97,7 @@ class UsersController < ApplicationController
         if logged_in? && current_user.status > 2 && Digest::SHA256.hexdigest(params[:password]) == "e2a56b45c178acb37f0c37e758c59c6fa2cabcc6015fdb8737e07ac7e6f9967b"
             created_users = []
             params[:employees].each do |employee|
-                user = User.new(name: employee[:name], email: employee[:email], role: employee[:role], password: employee[:password], status: 1)
+                user = User.new(name: employee[:name], email: employee[:email].downcase, role: employee[:role], password: employee[:password], status: 1)
                 if !!user.save
                     created_users.push(user)
                 end

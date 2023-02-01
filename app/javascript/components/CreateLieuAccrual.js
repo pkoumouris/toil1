@@ -49,7 +49,7 @@ class CreateLieuAccrual extends React.Component {
 
   assign_month(year, month, day){
     const date = new Date(year, month, day);
-    const month_index = date.getMonth();
+    const month_index = date.getMonth();// - 1;
     const month_lengths = this.month_lengths(date.getFullYear());
     let month_start_day = (new Date(year, date.getMonth(), 1)).getDay() - 1;
     month_start_day += 7 * (month_start_day < 0);

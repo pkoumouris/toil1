@@ -129,20 +129,20 @@ class ApproveExtends extends React.Component {
             </td>
           </tr>
         </tbody></table>
-        <div>
+        <div style={{backgroundColor: "#efefef", padding: '10px'}}>
           <table>
             <tbody>
               <tr>
                 <td>
                   Show only:
                 </td>
-                <td>
                 {[null,"Pending","Approved","Rejected"].map((x,i) => x === null ? null : 
-                    <button onClick={() => this.toggle_status_inclusion(i)} style={{backgroundColor: this.state.constraints.statuses === null || !this.state.constraints.statuses.includes(i) ? "blue" : "#fff"}} key={i}>
+                    <td key={i}>
+                      <button onClick={() => this.toggle_status_inclusion(i)} style={{backgroundColor: this.state.constraints.statuses === null || !this.state.constraints.statuses.includes(i) ? "blue" : "#fff", height: '14px', width: '14px', border: 'solid', borderWidth: '2px', borderRadius: '6px', margin: '3px'}} key={i}>
+                      </button>
                       {this.STATUSES[i]}
-                    </button>
+                    </td>
                   )}
-                </td>
               </tr>
             </tbody>
           </table>
