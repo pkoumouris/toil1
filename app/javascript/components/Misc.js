@@ -13,6 +13,10 @@ class Misc extends React.Component {
 
   }
 
+  componentDidMount(){
+    console.log(document.URL);
+  }
+
   general_request(){
     fetch("http://api.beliefmedia.com/bsb/"+val+".json", {
       method: 'GET',

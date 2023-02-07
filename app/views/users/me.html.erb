@@ -1,0 +1,62 @@
+<h2>
+    <%= current_user.name %>
+</h2>
+
+<table>
+    <tr>
+        <td style="width: 200px;">
+            Name
+        </td>
+        <td>
+            <%= current_user.name %>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Email
+        </td>
+        <td>
+            <%= current_user.email %>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Role
+        </td>
+        <td>
+            <%= current_user.role %>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Account created at
+        </td>
+        <td>
+            <%= current_user.created_at.rfc2822[0..15] %>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Account last updated at
+        </td>
+        <td>
+            <%= current_user.updated_at.rfc2822[0..15] %>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Number of superiors
+        </td>
+        <td>
+            <%= current_user.managers.count %>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Number of subordinates
+        </td>
+        <td>
+            <%= current_user.subordinates.count %>
+        </td>
+    </tr>
+</table>

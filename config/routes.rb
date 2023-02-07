@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   # User
   get '/user/:id', to: 'users#show'
+  get '/me', to: 'users#me'
   get '/api/me', to: 'users#details_api'
   get '/api/user/:id', to: 'users#employee_api'
   get '/employees/list', to: 'users#list'

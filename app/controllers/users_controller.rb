@@ -67,6 +67,7 @@ class UsersController < ApplicationController
         if logged_in?
             if current_user.status < 2
                 current_user.update_attribute(:password, params[:password])
+                current_user.update_attribute(:status, 2)
                 flash[:success] = "Password successfully changed"
                 render json: {
                     success: true
@@ -139,6 +140,9 @@ class UsersController < ApplicationController
     end
 
     def report_generator
+    end
+
+    def me
     end
 
 end
