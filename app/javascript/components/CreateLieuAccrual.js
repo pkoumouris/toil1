@@ -70,6 +70,7 @@ class CreateLieuAccrual extends React.Component {
   }
 
   select_day(day_index, row, column){
+    console.log("Selected month index: "+String(this.state.month_index));
     let x = {
       day_number: day_index + 1,
       day_index: day_index,
@@ -134,7 +135,7 @@ class CreateLieuAccrual extends React.Component {
       }
       throw new Error('Request fail');
     }).then(json => {
-      let engagements = Array(this.state.month_lengths[month]);
+      let engagements = Array(this.state.month_lengths[month-1]);
       let i;
       for (i = 0 ; i < engagements.length ; i++){
         engagements[i] = [];
@@ -150,7 +151,7 @@ class CreateLieuAccrual extends React.Component {
       this.setState({
         day_engagements: engagements,
         selected_day: null
-      })
+      });
     });
   }
 
