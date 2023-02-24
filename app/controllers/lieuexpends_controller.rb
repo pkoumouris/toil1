@@ -161,6 +161,12 @@ class LieuexpendsController < ApplicationController
             sum += [lieuaccrual.duration, params[:minutes].to_i - sum].min
           end
         end
+        saved_lieuexpends.each do |lieuexpend|
+          current_user.managers.each do |manager|
+            user = manager.manager
+            UserMailer.with(user: (Rails.env.development? ? User.first : user), lieuexpend: lieuexpend).lieuexpend_awaiting_approval.deliver_now
+          end
+        end
         if saved_lieuexpends.length == lieuaccruals.length
           render json: {
             success: true

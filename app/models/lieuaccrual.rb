@@ -37,4 +37,6 @@ class Lieuaccrual < ApplicationRecord
     def status_translation
         ["Unsubmitted","Pending","Approved","Rejected"][self.status]
     end
+
+    
 end

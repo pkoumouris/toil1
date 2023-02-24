@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    </head>
+    <body>
+        <h1>
+            Hi <%= @user.name.split(' ').first %>
+        </h1>
+        <p>
+            <%= @lieuaccrual.user.name %> has submitted an accrual of TOIL on <%= @lieuaccrual.start_at.rfc2822[0..15] %>. You will need to review this.
+        </p>
+        <p>
+            Log in <a href="https://toil.acl.org.au/login">here</a>.
+        </p>
+    </body>
+</html>

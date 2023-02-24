@@ -34,9 +34,22 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
+
+  # start special
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_options = {from: 'parris.koumouris@acl.org.au'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    user_name: 'apikey',
+    password: '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'
+  }
+  # end special
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
