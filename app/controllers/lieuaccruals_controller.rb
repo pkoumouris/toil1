@@ -33,9 +33,13 @@ class LieuaccrualsController < ApplicationController
       lieuaccrual = current_user.lieuaccruals.build(create_lieuaccrual_params)
       lieuaccrual.unexpended = lieuaccrual.duration
       if lieuaccrual.save
-        current_user.managers.each do |manager|
-          user = manager.manager
-          UserMailer.with(user: (Rails.env.development? ? User.first : user), lieuaccrual: lieuaccrual).lieuaccrual_awaiting_approval.deliver_now
+        begin
+          current_user.managers.each do |manager|
+            user = manager.manager
+            UserMailer.with(user: (Rails.env.development? ? User.first : user), lieuaccrual: lieuaccrual).lieuaccrual_awaiting_approval.deliver_now
+          end
+        rescue
+          puts "Error encountered in sending email"
         end
         render json: {
           created: true,

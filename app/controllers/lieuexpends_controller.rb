@@ -27,7 +27,7 @@ class LieuexpendsController < ApplicationController
     if logged_in?
       start_date = Date.new(params[:year].to_i, params[:month].to_i, 1)
       end_date = Date.new(params[:month].to_i == 12 ? params[:year].to_i+1 : params[:year].to_i, params[:month].to_i + 1, 1)
-      res = Lieuexpend.where(user_id: current_user, start_at: start_date..end_date).map { |l| l.details_api}
+      res = Lieuexpend.where(user_id: current_user.id, start_at: start_date..end_date).map { |l| l.details_api}
       render json: {
         results: res
       }.to_json
@@ -161,11 +161,15 @@ class LieuexpendsController < ApplicationController
             sum += [lieuaccrual.duration, params[:minutes].to_i - sum].min
           end
         end
-        saved_lieuexpends.each do |lieuexpend|
-          current_user.managers.each do |manager|
-            user = manager.manager
-            UserMailer.with(user: (Rails.env.development? ? User.first : user), lieuexpend: lieuexpend).lieuexpend_awaiting_approval.deliver_now
+        begin
+          saved_lieuexpends.each do |lieuexpend|
+            current_user.managers.each do |manager|
+              user = manager.manager
+              UserMailer.with(user: (Rails.env.development? ? User.first : user), lieuexpend: lieuexpend).lieuexpend_awaiting_approval.deliver_now
+            end
           end
+        rescue
+          puts "Error encountered in sending email"
         end
         if saved_lieuexpends.length == lieuaccruals.length
           render json: {
