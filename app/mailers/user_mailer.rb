@@ -6,12 +6,12 @@ class UserMailer < ApplicationMailer
         @user = params[:user]
         #@subordinate = params[:subordinate] # this is a user
         @lieuaccrual = params[:lieuaccrual]
-        mail(to: @user.email, subject: @lieuaccrual.user.name+' has accrued TOL for you to review')
+        mail(to: @user.email, subject: @lieuaccrual.user.name+' has accrued TOIL for you to review')
     end
 
     def lieuexpend_awaiting_approval
         @user = params[:user]
         @lieuexpend = params[:lieuexpend]
-        mail(to: @user.email, subject: @lieuexpend.user.name+' has requested to take time off for you to review')
+        mail(to: @user.email, subject: @lieuexpend.user.name+' has requested to take time off in lieu for you to review')
     end
 end
