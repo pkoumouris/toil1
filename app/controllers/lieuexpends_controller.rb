@@ -153,7 +153,9 @@ class LieuexpendsController < ApplicationController
         saved_lieuexpends = []
         lieuaccruals.each do |lieuaccrual|
           if lieuaccrual.user.id == current_user.id
-            lieuexpend = lieuaccrual.lieuexpends.build(status: 1, start_at: day, start_minutes: at, duration: [lieuaccrual.duration, params[:minutes].to_i-sum].min, user_id: current_user.id)
+            duration = [lieuaccrual.duration, params[:minutes].to_i-sum].min
+            lieuexpend = lieuaccrual.lieuexpends.build(status: 1, start_at: day, start_minutes: at, duration: duration, user_id: current_user.id)
+            at += duration
             if lieuexpend.save
               saved_lieuexpends.push(lieuexpend)
             end
