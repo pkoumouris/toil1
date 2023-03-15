@@ -1,6 +1,6 @@
 class LieuexpendsController < ApplicationController
 
-  EXPENDITURE_WINDOW = (6.weeks + 1.day)
+  EXPENDITURE_WINDOW = (6.months + 1.day)
   # 
 
   def new
