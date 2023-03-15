@@ -6,7 +6,7 @@ class User < ApplicationRecord
     has_many :lieuaccruals
     has_many :lieuexpends
 
-    EXPENDITURE_WINDOW = (6.weeks + 1.day)
+    EXPENDITURE_WINDOW = (6.months + 1.day)
     
     def assign_as_manager_to(user)
         if Superior.find_by(manager_id: user.id, subordinate_id: self.id).nil?
