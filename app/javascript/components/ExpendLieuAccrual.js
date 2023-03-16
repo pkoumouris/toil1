@@ -114,7 +114,7 @@ class ExpendLieuAccrual extends React.Component {
     this.setState({
       selected_day: x
     });
-    if (this.in_the_future(day_index)){
+    if (this.in_the_future(day_index) >= 0){
       this.get_available_leave_day(this.state.year, this.state.month_index + 1, day_index + 1)
     } else {
       console.log("In the past");
@@ -573,7 +573,7 @@ class ExpendLieuAccrual extends React.Component {
           <h3>
             {this.state.selected_day.day_of_week} {this.state.selected_day.day_number} {this.state.selected_day.month_name} {this.state.year}
           </h3>
-          {this.in_the_future(this.state.selected_day.day_index) > 0 && !this.is_weekend() ? 
+          {this.in_the_future(this.state.selected_day.day_index) >= 0 && !this.is_weekend() ? 
           <div>
             <h4>
               Expenditures today
