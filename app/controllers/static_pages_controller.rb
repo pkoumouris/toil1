@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:test_post]
+
   def home
   end
 
@@ -26,5 +28,17 @@ class StaticPagesController < ApplicationController
 
   def misc_card
     
+  end
+
+  def test_get
+    render json: {
+      you_sent: params
+    }.to_json
+  end
+
+  def test_post
+    render json: {
+      you_sent: params
+    }.to_json
   end
 end

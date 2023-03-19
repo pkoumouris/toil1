@@ -52,4 +52,8 @@ Rails.application.routes.draw do
 
   get '/misc', to: 'static_pages#misc'
   get '/misc/bsb', to: 'static_pages#misc_bsb'
+
+  # Test API endpoints
+  get '/test', to: 'static_pages#test_get'
+  post '/test', to: 'static_pages#test_post'
 end
