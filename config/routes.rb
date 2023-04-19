@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   post '/massimport', to: 'users#mass_import_api'
   get '/allsubordinates', to: 'users#get_all_subordinates'
   get '/report', to: 'users#report_generator'
+  get '/filter', to: 'users#filter'
+  get '/api/filterdata', to: 'users#filterdata'
 
   # Lieuaccruals
   get '/accruals/new', to: 'lieuaccruals#new'

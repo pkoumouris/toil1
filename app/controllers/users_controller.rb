@@ -40,6 +40,17 @@ class UsersController < ApplicationController
     def generate_report
     end
 
+    def filter
+    end
+
+    def filterdata
+        render json: {
+            data: {
+                users: User.all.each.map { |u| {id: u.id, name: u.name} }
+            }
+        }.to_json
+    end
+
     def list_subordinates_api
         if logged_in?
             render json: {

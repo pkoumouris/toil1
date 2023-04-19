@@ -1,0 +1,806 @@
+<head>
+    <meta name=”viewport” content=”width=device-width, initial-scale=1.0”>
+</head>
+<body>
+    <div id="success-container">
+        <h2>
+            Thank you!
+        </h2>
+        <p>
+            Your donation has been successful.
+        </p>
+        <table id="success-container-table">
+        </table>
+        <p>
+            Check your inbox for a donation receipt.
+        </p>
+    </div>
+    <div id="main-container">
+        <!--<table id="header-table">
+            <tr>
+                <td>
+                    <div id="back-button">
+                        
+                    </div>
+                </td>
+                <td>
+                    <img src="ACL_Logo_NEG_new.png" />
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>-->
+        <img src="ACL_Logo_NEG_new.png" id="top-logo" />
+        <div id="back-button">
+
+        </div>
+        <div id="errors">
+        </div>
+        <div id="message-container">
+            <p>
+                Now, more than ever, Australia needs strong voices for truth in the public squares to drive political and cultural transformation.
+            </p>
+            <p>
+                You can help grow one of the country's largest political movements through your gift today. Your generous support will help:
+            </p>
+            <ul>
+                <li>
+                    Mobilise more Australian Christians to engage in political campaigns and prayer  
+                </li>
+                <li>
+                    Lobby politicians about dangerous legislation in State and Federal Parliaments 
+                </li>
+                <li>
+                    Share biblical truth on current issues with millions of people
+                </li>
+                <li>
+                    Inspire believers to be salt and light in their own communities 
+                </li>
+            </ul>
+            <p>
+                Thank you for investing in this growing grassroots movement - so that together we can glorify Jesus and make truth public!
+            </p>
+        </div>
+        <div id="amount-container">
+            <h2>
+                Amount
+            </h2>
+            
+            <div id="amount-table">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="amount-level" id="amount-level-30" onclick="select_donation_amount(0)">
+                                $30
+                            </div>
+                        </td>
+                        <td>
+                            <div class="amount-level" id="amount-level-60" onclick="select_donation_amount(1)">
+                                $60
+                            </div>
+                        </td>
+                        <td>
+                            <div class="amount-level-selected" id="amount-level-120" onclick="select_donation_amount(2)">
+                                $120
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="amount-level" id="amount-level-250" onclick="select_donation_amount(3)">
+                                $250
+                            </div>
+                        </td>
+                        <td>
+                            <div class="amount-level" id="amount-level-500" onclick="select_donation_amount(4)">
+                                $500
+                            </div>
+                        </td>
+                        <td>
+                            <div class="amount-level" id="amount-level-1000" onclick="select_donation_amount(5)">
+                                $1000
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="amount-level" id="amount-level-2500" onclick="select_donation_amount(6)">
+                                $2500
+                            </div>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+                            <div class="amount-level" id="amount-level-custom" onclick="select_donation_amount(-1)">
+                                Other
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <table id="custom-amount">
+                <tr>
+                    <td>
+                        A$
+                    </td>
+                    <td>
+                        <input id="custom-amount-input" type="number" oninput="handle_custom_amount()" />
+                    </td>
+                </tr>
+            </table>
+            <div id="frequency-container">
+                <table>
+                    <tr>
+                        <td>
+                            <input type="radio" id="frequency-single" onclick="select_frequency(0)" />
+                        </td>
+                        <td>
+                            Single
+                        </td>
+                        <td>
+                            <input type="radio" id="frequency-monthly" onclick="select_frequency(1)" />
+                        </td>
+                        <td>
+                            Monthly
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="amount-summary">
+                <table>
+                    <tr>
+                        <td id="amount-summary-amount">
+                            $120
+                        </td>
+                        <td id="amount-summary-frequency">
+                            Paid once
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <h2>
+                Your information
+            </h2>
+            <div id="info-container">
+                <div class="info-label">
+                    First Name
+                </div>
+                <input type="text" id="info-input-firstname" class="info-input" />
+                <div class="info-label">
+                    Last Name
+                </div>
+                <input type="text" id="info-input-lastname" class="info-input" />
+                <div class="info-label">
+                    Email
+                </div>
+                <input type="text" id="info-input-email" class="info-input" />
+                <div class="info-label">
+                    Phone
+                </div>
+                <input type="text" id="info-input-phone" class="info-input" />
+                <div class="info-label">
+                    Address
+                </div>
+                <input type="text" id="info-input-address" class="info-input" />
+            </div>
+            <table id="send-email-updates">
+                <tr>
+                    <td>
+                        <input type="checkbox" onclick="toggle_send_email_updates()" />
+                    </td>
+                    <td>
+                        Send email updates
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="dropin-container">
+            <div id="securepay-ui-container">
+            </div>
+        </div>
+        <button class="submit-button" onclick="submit_payment()">
+            Submit
+        </button>
+        <!--<button onclick="success()">
+            test 1
+        </button>-->
+    </div>
+</body>
+
+<!-- Include the SecurePay UI Component. -->
+<script id="securepay-ui-js" src="https://payments-stest.npe.auspost.zone/v3/ui/client/securepay-ui.min.js"></script>
+
+<style>
+    @font-face {
+        font-family: Fieldwork;
+        src: url('Fieldwork-Geo-Regular.otf');
+    }
+
+    body {
+        background-color: #154b68; /*#154B68*/
+        font-family: Fieldwork;
+    }
+
+    #top-logo {
+        height: 7vh;
+        margin-bottom: 4vh;
+    }
+
+    #header-table {
+        width: 80vw;
+        margin: auto;
+    }
+
+    #header-table tr td h1 {
+        vertical-align: middle;
+        display: inline-block;
+        line-height: 1;
+    }
+
+    #header-table tr td img {
+        height: 7vh;
+        margin: auto;
+    }
+
+    #header-table tr td:nth-child(1) {
+        width: 20vw;
+    }
+
+    #header-table tr td:nth-child(2) {
+        /*text-align: center;
+        width: 60vw;*/
+    }
+
+    #header-table tr td:nth-child(3) {
+        width: 20vw;
+    }
+
+    #header-table {
+        margin-bottom: 3vh;
+    }
+
+    #main-container {
+        padding: 1.5em;
+        display: block;
+        text-align: center;
+    }
+
+    #message-container {
+        background-color: #efefef;
+        padding: 2em;
+        font-size: 1vh;
+        line-height: 1.5;
+        text-align: left;
+        /*border-radius: 2vh;*/
+    }
+
+    .header-1 {
+        font-size: 5vh;
+        text-align: center;
+        color: #fff;
+    }
+
+    p {
+        //font-size: 4em;
+    }
+
+    ul {
+        text-align: left;
+    }
+
+    #amount-container {
+        background-color: #efefef;
+        padding: 40px;
+        margin-top: 40px;
+        /*border-radius: 2vh;*/
+    }
+
+    #amount-container h2 {
+        text-align: center;
+        font-size: 3vh;
+    }
+
+    #amount-table table {
+        width: 100%;
+    }
+
+    #amount-table table tr td {
+        width: 33.3333%;
+    }
+
+    /*#amount-table table tr td {
+        padding: 0px;
+    }*/
+
+    .amount-level {
+        margin: 10px;
+        padding: 40px;
+        background-color: #154b68;
+        color: #fff;
+        text-align: center;
+        font-size: 2.2vh;
+        /*border-radius: 2vh;*/
+        font-weight: bold;
+    }
+
+    .amount-level-selected {
+        margin: 10px;
+        padding: 40px;
+        background-color: #5eb0d8;
+        color: #fff;
+        text-align: center;
+        font-size: 2.2vh;
+        /*border-radius: 2vh;*/
+        font-weight: bold;
+    }
+
+    #frequency-container table {
+        width: 90%;
+        margin-bottom: 4vh;
+    }
+
+    #frequency-container table tr td:nth-child(2) {
+        width: 40%;
+        padding-left: 15px;
+    }
+
+    #frequency-container table tr td:nth-child(4) {
+        width: 40%;
+        padding-left: 15px;
+    }
+
+    #frequency-container table tr td input[type=radio] {
+        height: 4em;
+        border: 0px;
+        width: 100%;
+    }
+
+    #frequency-container table tr td {
+        font-size: 2.2vh;
+    }
+
+    #dropin-container {
+        /*background-color: #efefef;*/
+        margin-top: 3vh;
+        padding: 5vw;
+        padding-top: 10vw;
+        margin-bottom: 8vh;
+        background-color: #fff;
+        height: 50vw;
+    }
+
+    .submit-button {
+        background-color: #E75819;
+        font-family: Fieldwork;
+        color: #fff;
+        margin: 3vh;
+        width: 70vw;
+        padding: 2vh;
+        font-size: 2vh;
+        border-radius: 2vh;
+    }
+
+    #custom-amount {
+        font-size: 6vw;
+        visibility: hidden;
+    }
+
+    #custom-amount input {
+        width: 100%;
+        font-size: 6vw;
+        margin-left: 2vw;
+    }
+
+    #amount-summary {
+        min-height: 12vh;
+        padding-top: 4vh;
+        border-top: solid;
+        border-top-width: 2px;
+        border-top-color: grey;
+    }
+
+    #amount-summary table {
+        width: 100%;
+    }
+
+    #amount-summary table tr td {
+        width: 50%;
+    }
+
+    #amount-summary table tr td:nth-child(1) {
+        font-size: 4vh;
+        color: green;
+        text-align: right;
+        font-weight: bold;
+        padding-right: 5vw;
+    }
+
+    #amount-summary table tr td:nth-child(2){
+        font-size: 2vh;
+        color: grey;
+    }
+
+    #send-email-updates input[type=checkbox] {
+        height: 3vh;
+        width: 3vh;
+        margin-right: 2.5vh;
+    }
+
+    #send-email-updates {
+        font-size: 2.5vh;
+    }
+
+    #info-container {
+        text-align: left;
+    }
+
+    .info-label {
+        font-size: 2vh;
+    }
+
+    .info-input {
+        font-size: 2vh;
+        width: 100%;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        padding: 1vh;
+        font-family: Fieldwork;
+    }
+
+    #success-container {
+        /*visibility: hidden;*/
+        display: none;
+        background-color: #efefef;
+        padding: 3vh;
+        margin: 3vh;
+        font-size: 2vh;
+        line-height: 1.5;
+        text-align: left;
+    }
+
+    #success-container-table {
+        width: 100%;
+        font-size: 2vh;
+    }
+
+    .general-button {
+        font-size: 2vh;
+        padding: 1vh;
+        /*width: 90vw;*/
+        margin: 1vh;
+        background-color: #E75819;
+        color: #fff;
+        font-family: Fieldwork;
+        border: none;
+    }
+
+    #back-button {
+        position: fixed;
+        top: 3vh;
+        left: 5vw;
+    }
+
+    /*#floating-back-button {
+
+    }*/
+</style>
+
+<script>
+
+    /*
+        22 Feb:
+        Need to make selection of custom amount update the summary.
+    */
+
+    function parse_url(url){
+        if (url.split('?').length === 1){
+            return {};
+        } else {
+            return Object.fromEntries(new Map(decodeURIComponent(url).split('?')[1].split('&').map((s,i) => s.split('='))));
+        }
+    }
+    console.log("URL: " +window.location.href);
+
+    const min_amount = 5;
+    const max_amount = 5000;
+    console.log("Current token");
+    //const url = new URLSearchParams(window.location.href);
+    //console.log(url.get('token'));
+    const i2a = [30,60,120,250,500,1000,2500];
+    const env2url = {
+        "preview":"https://preview.wem.io/38864/webservices/securepay/payment",
+        "staging":"https://aclportal.staging.wemapac.io/webservices/securepay/payment",
+        "live":"https://aclportal.live.webapac.io/webservices/securepay/payment"
+    };
+    let state = {
+        amount: 120,
+        amount_index: 2,
+        frequency_index: -1,
+        params: parse_url(window.location.href),
+        send_email_updates: false,
+        ip: null
+    };
+    console.log("Here are the params:");
+    console.log(state.params);
+
+    ['info-input-firstname','info-input-lastname','info-input-email','info-input-phone','info-input-address'].forEach(
+        (id)=>{
+            document.getElementById(id).addEventListener('change',(e)=>{
+                state.params[id.split('-').slice(-1)] = e.target.value;
+                console.log(e.target.value);
+            });
+    });
+
+    function fill_from_params(){
+        document.getElementById('info-input-firstname').value = state.params.firstname === undefined ? "" : state.params.firstname;
+        document.getElementById('info-input-lastname').value = state.params.lastname === undefined ? "" : state.params.lastname;
+        document.getElementById('info-input-email').value = state.params.email === undefined ? "" : state.params.email;
+        document.getElementById('info-input-phone').value = state.params.phone === undefined ? "" : state.params.phone;
+        document.getElementById('info-input-address').value = state.params.address === undefined ? "" : state.params.address;
+    }
+    fill_from_params();
+
+    if (state.params.token !== undefined){
+        console.log("here");
+        const env2root_url = {
+            "preview":"https://preview.wem.io/38864",
+            "staging":"https://aclportal.staging.wemapac.io",
+            "live":"https://aclportal.live.webapac.io"
+        };
+        const url = state.params.env === undefined ? env2root_url["preview"] : env2root_url[state.params.env];
+        document.getElementById('back-button').innerHTML = '<button class="general-button" onclick="window.location='+"'"+url+"'"+'">Back</button>';
+    }
+
+    function get_ip(){
+        fetch("https://api.ipify.org?format=json",{
+            method: 'GET',
+            mode: 'cors'
+        }).then((response) => {
+            if (response.ok){
+                return response.json();
+            }
+        }).then(json => {
+            console.log("IP");
+            console.log(json);
+            state.ip = json.ip;
+        });
+    }
+    get_ip();
+
+    function get_errors(){
+        console.log("Params");
+        console.log(state.params);
+        let errors = [];
+        if (state.amount < min_amount || state.amount > max_amount){
+            errors.push("Amount must be between $"+String(min_amount)+" and $"+String(max_amount));
+        }
+        if (state.frequency_index < 0){
+            errors.push("You must select a frequency (single payment or monthly)");
+        }
+        if ([state.params.firstname,state.params.lastname,state.params.email,state.params.phone,state.params.address].map((e) => (e===undefined || e.length === 0 ? 1 : 0)).reduce((a,c) => a+c) > 0){
+            errors.push("There is data missing.");
+        } else {
+            //if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(state.params.email))){
+            if (!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(state.params.email.toLowerCase())){
+                errors.push("Not a valid email.");
+            }
+            //if (/^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$/.test(state.params.phone)){
+            /*console.log(state.params.phone);
+            console.log(Array.from(state.params.phone).map((e) => Number(e)===NaN ? 1 : 0));
+            console.log(state.params.phone.slice(0,2)!=="04");*/
+            if (Array.from(state.params.phone).map((e) => Number(e)===NaN ? 1 : 0).includes(1) || state.params.phone.slice(0,2)!=="04"){
+                errors.push("Not a valid Australian phone number");
+            }
+        }
+        
+        console.log("Here are the errors:");
+        console.log(errors);
+        return errors;
+    }
+
+    function toggle_send_email_updates(){
+        state.send_email_updates = !state.send_email_updates;
+        console.log(state);
+    }
+
+    function assign_errors(e){
+        console.log("errors:");
+        console.log(e);
+        let x = document.getElementById('errors');
+        x.innerHTML = "";
+        x.style = {};
+        if (e.length === 0){
+            return null;
+        }
+        x.innerHTML = "The following errors were detected:<ul>";
+        for (let i = 0 ; i < e.length ; i++){
+            x.innerHTML += "<li>"+e[i]+"</li>";
+        }
+        x.innerHTML += "</ul>";
+        x.style.backgroundColor = "red";
+        x.style.color = "#fff";
+        x.style.margin = "5vw";
+        x.style.padding = "5vw";
+    }
+
+    function handle_custom_amount(){
+        let errors = [];
+        console.log("Input amount:");
+        console.log(document.getElementById('custom-amount-input').value);
+        const amt = document.getElementById('custom-amount-input').value;
+        state.amount = document.getElementById('custom-amount-input').value;
+        if (amt < min_amount || amt > max_amount){
+            errors.push("Amount must be between "+String(min_amount)+" and "+String(max_amount));
+        }
+        assign_errors(errors);
+    }
+
+    function select_donation_amount(i){
+        if (i < 0){
+            document.getElementById('custom-amount').style.visibility = 'visible';
+            document.getElementById('amount-level-custom').className = 'amount-level-selected';
+            document.getElementById('amount-level-'+String(i2a[state.amount_index])).className = 'amount-level';
+            document.getElementById('amount-summary-frequency').innerHTML = 'Custom'; // need to fix !!!
+        } else {
+            document.getElementById('amount-level-'+String(i2a[state.amount_index])).className = 'amount-level';
+            state.amount = i2a[i];
+            state.amount_index = i;
+            document.getElementById('amount-level-'+String(i2a[i])).className = 'amount-level-selected';
+            document.getElementById('amount-level-custom').className = 'amount-level';
+            document.getElementById('custom-amount').style.visibility = 'hidden';
+            document.getElementById('amount-summary-amount').innerHTML = '$'+String(state.amount);
+            console.log(state);
+        }
+    }
+
+    function select_frequency(i){
+        document.getElementById('frequency-single').checked = (i === 0);
+        document.getElementById('frequency-monthly').checked = (i === 1);
+        document.getElementById('amount-summary-frequency').innerHTML = (i === 0 ? "Paid once" : "Paid monthly");
+        state.frequency_index = i;
+    }
+
+    function success(){
+        document.getElementById('success-container').style.display = 'block';
+        document.getElementById('main-container').style.display = 'none';
+        document.getElementById('success-container-table').innerHTML = '<tr><td style="width:50%;">Email</td><td>'+(state.params.email === undefined ? "" : state.params.email)+'</td></tr><tr><td>Amount</td><td>$'+state.amount+'</td></tr>';
+    }
+
+
+    var mySecurePayUI = null;
+      function initSPObject(){
+        try {
+          mySecurePayUI = new securePayUI.init({
+            containerId: 'securepay-ui-container',
+            scriptId: 'securepay-ui-js',
+            clientId: '0oaxb9i8P9vQdXTsn3l5',
+            merchantCode: '5AR0055',
+            card: { // card specific config options / callbacks
+                onTokeniseSuccess: function(tokenisedCard) {
+                  // card was successfully tokenised
+                  // here you could make a payment using the SecurePay API (via your application server)
+				    console.log("Here is the tokenised card:");
+                    console.log(tokenisedCard);
+					const paymentBody = {
+						"Card Token": tokenisedCard.token,
+						"Client IP": state.ip,
+                        "SecurePay Amount": state.amount,
+                        "Recurring": state.frequency_index === 1,
+                        "SecurePay Currency": "AUD",
+                        "SecurePay Email": decodeURIComponent(state.params.email),
+                        "SecurePay Phone": state.params.phone,
+                        "SecurePay Firstname": state.params.firstname,
+                        "SecurePay Lastname": state.params.lastname,
+                        "SecurePay Address": state.params.address,
+                        "SecurePay Purpose": state.params.purpose,
+                        "SecurePay Campaign": state.params.campaign,
+                        "SecurePay Emailupdates": state.send_email_updates,
+                        "User Token Payment": state.params.token
+					};
+					console.log("Payment body:");
+					console.log(paymentBody);
+					fetch("https://shy-frog-4dfd.aclobby.workers.dev",{
+                        method: 'POST',
+                        credentials: 'include',
+                        //mode: 'cors',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            "tgt_url":state.params.env === undefined ? env2url["preview"] : env2url[state.params.env],
+                            "tgt_method":"POST",
+                            "tgt_body":paymentBody,
+                            "tgt_auth":null
+                        })
+                    }).then((response) => {
+                        if (response.ok){
+                            return response.json();
+                        }
+                    }).then(json => {
+                        console.log("Success!");
+                        console.log(json);
+                        success();
+                    });
+                    /*
+                    
+                    */
+
+                }
+            },
+            style: {
+                label: {
+                    font: {
+                        size: String(window.innerHeight/100) + 'px'
+                    }
+                },
+                input: {
+                    font: {
+                        size: String(window.innerHeight/100)+'px'
+                    }
+                }
+            },
+            onLoadComplete: function(){
+                //console.log('Current width: '+String(document.getElementById('securepay-ui-iframe-0').offsetWidth));
+                //console.log('Current width of container: '+String(document.getElementById('securepay-ui-container').offsetWidth));
+                const scale = 0.9 * document.getElementById('securepay-ui-container').offsetWidth / document.getElementById('securepay-ui-iframe-0').offsetWidth;
+                document.getElementById('securepay-ui-iframe-0').style.marginTop = String((document.getElementById('securepay-ui-container').offsetHeight / 2) * (scale - 1)) + 'px';
+                document.getElementById('securepay-ui-iframe-0').style.width = String(100/scale)+'%';
+                document.getElementById('securepay-ui-iframe-0').style.transform = 'scale('+String(scale)+')';
+                document.getElementById('securepay-ui-container').style.textAlign = 'center';
+                document.getElementById('securepay-ui-iframe-0').style.border = 'none';
+
+                //document.getElementById('dropin-container').style.height = document.getElementById('securepay-ui-iframe-0').offsetHeight + 'px';
+                //console.log('Inner HTML:');
+                //console.log(document.getElementById('securepay-ui-container').innerHTML);
+            },
+            onTokeniseError: function(errors) {
+                // error while tokenising card 
+                console.log("ERRORS");
+                console.log(String(errors));
+            }
+          });
+          console.log("Object initialised!");
+        } catch(err){
+          console.log("Could not work, trying again...");
+          setTimeout(initSPObject, 1000);
+        }
+      }
+
+initSPObject();
+
+function submit_payment(){
+    const errors = get_errors();
+    if (errors.length === 0){
+        console.log("Tokenising...");
+        mySecurePayUI.tokenise();
+        /*const paymentBody = {
+            "Card Token": 'oogabooga',
+            "Client IP": state.ip,
+            "SecurePay Amount": state.amount,
+            "Recurring": state.frequency_index === 1,
+            "SecurePay Currency": "AUD",
+            "SecurePay Email": decodeURIComponent(state.params.email),
+            "SecurePay Phone": state.params.phone,
+            "SecurePay Firstname": state.params.firstname,
+            "SecurePay Lastname": state.params.lastname,
+            "SecurePay Address": state.params.address,
+            "SecurePay Purpose": state.params.purpose,
+            "SecurePay Campaign": state.params.campaign,
+            "SecurePay Emailupdates": state.send_email_updates,
+            "User Token Payment": state.params.token
+        };
+        console.log(paymentBody);*/
+    } else {
+        console.log("Errors found");
+        assign_errors(errors);
+        document.getElementById('errors').scrollIntoView();
+    }
+    /*let x = mySecurePayUI.tokenise();
+    console.log(x);*/
+}
+// document.getElementById('securepay-ui-iframe-0')
+
+</script>

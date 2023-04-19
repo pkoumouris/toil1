@@ -83,7 +83,8 @@ class User < ApplicationRecord
     end
 
     def available_leave
-        self.lieuaccruals.where("status = 2 AND unexpended > 0").map { |l| l.unexpended }.sum
+        return self.determine_total_leave_accrued - self.determine_total_leave_taken
+        #self.lieuaccruals.where("status = 2 AND unexpended > 0").map { |l| l.unexpended }.sum
     end
 
     def available_leave_from(time)
