@@ -15,7 +15,7 @@ class LieuexpendsController < ApplicationController
       render json: {
         lieuexpends: lieuexpends.map { |l| l.details_api },
         lieuaccruals: lieuaccruals.map { |l| l.details_api },
-        available_leave: current_user.available_leave_from(day),
+        available_leave: current_user.available_leave, #_from(day),
         success: true
       }.to_json
     else

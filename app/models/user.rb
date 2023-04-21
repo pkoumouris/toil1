@@ -99,7 +99,7 @@ class User < ApplicationRecord
     def determine_total_leave_accrued
         sum = 0
         self.lieuaccruals.each do |accrual|
-            sum += accrual.duration
+            sum += accrual.status > 1 ? accrual.duration : 0
         end
         self.update_attribute(:total_leave_accrued, sum)
         return sum
