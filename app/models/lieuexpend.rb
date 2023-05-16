@@ -16,4 +16,8 @@ class Lieuexpend < ApplicationRecord
   def expenditure_window
     (6.weeks + 1.day)
   end
+
+  #def detail_string
+  #  self.start_at.rfc2822[0..15] + " " + 
+  #end
 end

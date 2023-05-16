@@ -107,10 +107,13 @@ class User < ApplicationRecord
 
     def determine_total_leave_taken
         sum = 0
-        self.lieuaccruals.each do |accrual|
-            accrual.lieuexpends.each do |expend|
-                sum += expend.duration
-            end
+        #self.lieuaccruals.each do |accrual|
+        #    accrual.lieuexpends.each do |expend|
+        #        sum += expend.duration
+        #    end
+        #end
+        self.lieuexpends.each do |lieuexpend|
+            sum += lieuexpend.duration
         end
         self.update_attribute(:total_leave_taken, sum)
         return sum
